@@ -36,6 +36,7 @@ async function run() {
             res.send(result);
         })
 
+        // upload
         app.post('/upload', async (req, res) => {
             const product = req.body;
             const result = await productCollection.insertOne(product);
