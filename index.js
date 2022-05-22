@@ -12,7 +12,7 @@ app.use(express.json());
 
 
 // mongodb setup
-const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.4apda.mongodb.net/?retryWrites=true&w=majority`;
@@ -36,11 +36,11 @@ async function run() {
             res.send(result);
         })
 
-        // app.post('/upload', async (req, res) => {
-        //     const product = req.body;
-        //     const result = await productCollection.insertOne(product);
-        //     res.send(result);
-        // })
+        app.post('/upload', async (req, res) => {
+            const product = req.body;
+            const result = await productCollection.insertOne(product);
+            res.send(result);
+        })
 
 
     }
