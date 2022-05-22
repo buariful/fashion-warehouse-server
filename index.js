@@ -24,12 +24,14 @@ async function run() {
         await client.connect();
         const productCollection = client.db('wareHouseProducts').collection('products');
 
+        // get all the products
         app.get('/products', async (req, res) => {
             const query = {};
             const cursor = productCollection.find(query);
             const products = await cursor.toArray();
             res.send(products)
         })
+        // delete
         app.delete('/delete', async (req, res) => {
             const product = req.body;
             const result = await productCollection.deleteOne(product);
