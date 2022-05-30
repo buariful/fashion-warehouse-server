@@ -45,7 +45,20 @@ async function run() {
             res.send(result);
         })
 
-
+        // put update a singleproduct from productDetails page
+        app.put('/update/:id', async (req, res) => {
+            const id = req.params.id;
+            const updateProduct = req.body;
+            const filter = { productId: id };
+            const result = await productCollection.updateOne(
+                filter,
+                {
+                    $set: updateProduct,
+                },
+                { upsert: true }
+            );
+            res.send({ result })
+        })
     }
     finally {
 
